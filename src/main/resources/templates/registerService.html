@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Form validation Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+	th:href="@{/css/style.css}" />
+</head>
+<body>
+
+	<h1 th:text="${message}" align="center"></h1>
+	<div class="container">
+		<h2>Registration form</h2>
+		<form action="saveService" th:action="saveService"
+			th:object="${service}" method="post">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="exampleModalLabel">SERVICE</h3>
+			 
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="name">Nom:</label> <input type="text"
+							class="form-control" id="name" placeholder="Enter Name"
+							name="name" th:field="*{name}"> <br />
+						<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+							class="alert alert-danger"></p>
+					</div>
+					<div class="form-group">
+						<label for="ip">IP:</label> <input type="ip"
+							class="form-control" id="ip" placeholder="Enter ip"
+							name="ip" th:field="*{ip}"> <br />
+						<p th:if="${#fields.hasErrors('ip')}"
+							th:errors="*{ip}" class="alert alert-danger"></p>
+					</div>
+					<div class="form-group">
+						<label for="tlphon">Port:</label> <input type="text"
+							class="form-control" id="port" placeholder="Enter port"
+							name="tlphon" th:field="*{port}"> <br />
+						<p th:if="${#fields.hasErrors('port')}" th:errors="*{port}"
+							class="alert alert-danger"></p>
+					</div>
+
+		<div class="form-group">
+						<label for="tlphon">Path:</label> <input type="text"
+							class="form-control" id="path" placeholder="Enter path"
+							name="tlphon" th:field="*{path}"> <br />
+						<p th:if="${#fields.hasErrors('path')}" th:errors="*{path}"
+							class="alert alert-danger"></p>
+					</div>
+
+			 
+ 
+
+		<div class="modal-footer">
+			<button type="submit" class="btn btn-primary">Submit</button>
+
+		</div>
+
+	</div>
+			</div>
+		</form>
+	</div>
+
+</body>
+</html>
