@@ -12,5 +12,6 @@ import com.djamel.entities.Service;
 public interface RepoService extends JpaRepository<Service, Integer>{
 
 	Optional<Service> findByName(String Name);
- 
+	Optional<Service> findByPort(String Port);
+
 }

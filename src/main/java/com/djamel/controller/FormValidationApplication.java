@@ -7,7 +7,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,11 +24,7 @@ public class FormValidationApplication {
 RepoService repoService;
 
 
-
-
-
-	
-	
+ 
 //################################## Get SERVICE ##################################""
 @GetMapping("/Services")
 public String showPage(Model model, @RequestParam(defaultValue = "0") int page){
@@ -66,7 +61,10 @@ public String showPage(Model model, @RequestParam(defaultValue = "0") int page){
 			result .rejectValue("name", "error.employe",
 					"Nom de service déjà existé choisis d'autre nom !");
 		}
-
+		if (repoService.findByPort(service.getPort()).isPresent()) {
+			result .rejectValue("port", "error.employe",
+					"N° de Port  déjà existé choisis d'autre port !");
+		}
 		if (result.hasErrors()) {
 		 
 			return "registerService";
